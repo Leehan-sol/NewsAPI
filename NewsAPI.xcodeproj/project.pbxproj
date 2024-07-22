@@ -13,11 +13,26 @@
 		CC57C31B2C4C0F8A00EF1A80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC57C31A2C4C0F8A00EF1A80 /* Assets.xcassets */; };
 		CC57C31E2C4C0F8B00EF1A80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC57C31C2C4C0F8B00EF1A80 /* LaunchScreen.storyboard */; };
 		CC57C3262C4C111800EF1A80 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57C3252C4C111800EF1A80 /* ListView.swift */; };
-		CC57C3292C4C122E00EF1A80 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC57C3282C4C122E00EF1A80 /* SnapKit */; };
 		CC57C32B2C4C149100EF1A80 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57C32A2C4C149100EF1A80 /* RecordView.swift */; };
 		CC57C32D2C4C149900EF1A80 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57C32C2C4C149900EF1A80 /* RecordViewController.swift */; };
 		CC57C3322C4C177600EF1A80 /* NewsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57C3312C4C177600EF1A80 /* NewsPageView.swift */; };
 		CC57C3342C4C178200EF1A80 /* NewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57C3332C4C178200EF1A80 /* NewsPageViewController.swift */; };
+		CC97B5202C4E3E12009AC6E6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B51F2C4E3E12009AC6E6 /* APIService.swift */; };
+		CC97B5232C4E3E69009AC6E6 /* DataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5222C4E3E69009AC6E6 /* DataEntity.swift */; };
+		CC97B5272C4E3E93009AC6E6 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5262C4E3E93009AC6E6 /* News.swift */; };
+		CC97B52B2C4E5B6C009AC6E6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */; };
+		CC97B52D2C4E5BB7009AC6E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B52C2C4E5BB7009AC6E6 /* Secrets.swift */; };
+		CC97B53A2C4E5FB7009AC6E6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5392C4E5FB7009AC6E6 /* SnapKit */; };
+		CC97B53C2C4E5FB7009AC6E6 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B53B2C4E5FB7009AC6E6 /* SnapKit-Dynamic */; };
+		CC97B53F2C4E5FBF009AC6E6 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B53E2C4E5FBF009AC6E6 /* RxBlocking */; };
+		CC97B5412C4E5FBF009AC6E6 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5402C4E5FBF009AC6E6 /* RxBlocking-Dynamic */; };
+		CC97B5432C4E5FBF009AC6E6 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5422C4E5FBF009AC6E6 /* RxCocoa */; };
+		CC97B5452C4E5FBF009AC6E6 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5442C4E5FBF009AC6E6 /* RxCocoa-Dynamic */; };
+		CC97B5472C4E5FBF009AC6E6 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5462C4E5FBF009AC6E6 /* RxRelay */; };
+		CC97B5492C4E6CA5009AC6E6 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */; };
+		CC97B54E2C4E7DD9009AC6E6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B54D2C4E7DD9009AC6E6 /* String+.swift */; };
+		CC97B5502C4E827F009AC6E6 /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */; };
+		CC97B5522C4E8741009AC6E6 /* UIScrollView+React.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5512C4E8741009AC6E6 /* UIScrollView+React.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +48,15 @@
 		CC57C32C2C4C149900EF1A80 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		CC57C3312C4C177600EF1A80 /* NewsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPageView.swift; sourceTree = "<group>"; };
 		CC57C3332C4C178200EF1A80 /* NewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPageViewController.swift; sourceTree = "<group>"; };
+		CC97B51F2C4E3E12009AC6E6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		CC97B5222C4E3E69009AC6E6 /* DataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntity.swift; sourceTree = "<group>"; };
+		CC97B5262C4E3E93009AC6E6 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		CC97B52C2C4E5BB7009AC6E6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		CC97B54D2C4E7DD9009AC6E6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
+		CC97B5512C4E8741009AC6E6 /* UIScrollView+React.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+React.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +64,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC57C3292C4C122E00EF1A80 /* SnapKit in Frameworks */,
+				CC97B53A2C4E5FB7009AC6E6 /* SnapKit in Frameworks */,
+				CC97B53F2C4E5FBF009AC6E6 /* RxBlocking in Frameworks */,
+				CC97B5472C4E5FBF009AC6E6 /* RxRelay in Frameworks */,
+				CC97B5432C4E5FBF009AC6E6 /* RxCocoa in Frameworks */,
+				CC97B53C2C4E5FB7009AC6E6 /* SnapKit-Dynamic in Frameworks */,
+				CC97B5452C4E5FBF009AC6E6 /* RxCocoa-Dynamic in Frameworks */,
+				CC97B5412C4E5FBF009AC6E6 /* RxBlocking-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,8 +96,11 @@
 		CC57C3102C4C0F8A00EF1A80 /* NewsAPI */ = {
 			isa = PBXGroup;
 			children = (
+				CC97B52C2C4E5BB7009AC6E6 /* Secrets.swift */,
 				CC57C3112C4C0F8A00EF1A80 /* AppDelegate.swift */,
 				CC57C3132C4C0F8A00EF1A80 /* SceneDelegate.swift */,
+				CC97B54A2C4E7D74009AC6E6 /* Util */,
+				CC97B5212C4E3E51009AC6E6 /* Model */,
 				CC57C32E2C4C174400EF1A80 /* ListView */,
 				CC57C32F2C4C175300EF1A80 /* RecordView */,
 				CC57C3302C4C175E00EF1A80 /* NewsPageView */,
@@ -83,6 +116,8 @@
 			children = (
 				CC57C3252C4C111800EF1A80 /* ListView.swift */,
 				CC57C3152C4C0F8A00EF1A80 /* ListViewController.swift */,
+				CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */,
+				CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -105,6 +140,26 @@
 			path = NewsPageView;
 			sourceTree = "<group>";
 		};
+		CC97B5212C4E3E51009AC6E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC97B5222C4E3E69009AC6E6 /* DataEntity.swift */,
+				CC97B5262C4E3E93009AC6E6 /* News.swift */,
+				CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */,
+				CC97B51F2C4E3E12009AC6E6 /* APIService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC97B54A2C4E7D74009AC6E6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CC97B54D2C4E7DD9009AC6E6 /* String+.swift */,
+				CC97B5512C4E8741009AC6E6 /* UIScrollView+React.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,7 +177,13 @@
 			);
 			name = NewsAPI;
 			packageProductDependencies = (
-				CC57C3282C4C122E00EF1A80 /* SnapKit */,
+				CC97B5392C4E5FB7009AC6E6 /* SnapKit */,
+				CC97B53B2C4E5FB7009AC6E6 /* SnapKit-Dynamic */,
+				CC97B53E2C4E5FBF009AC6E6 /* RxBlocking */,
+				CC97B5402C4E5FBF009AC6E6 /* RxBlocking-Dynamic */,
+				CC97B5422C4E5FBF009AC6E6 /* RxCocoa */,
+				CC97B5442C4E5FBF009AC6E6 /* RxCocoa-Dynamic */,
+				CC97B5462C4E5FBF009AC6E6 /* RxRelay */,
 			);
 			productName = NewsAPI;
 			productReference = CC57C30E2C4C0F8A00EF1A80 /* NewsAPI.app */;
@@ -153,7 +214,8 @@
 			);
 			mainGroup = CC57C3052C4C0F8A00EF1A80;
 			packageReferences = (
-				CC57C3272C4C122E00EF1A80 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CC97B5382C4E5FB7009AC6E6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = CC57C30F2C4C0F8A00EF1A80 /* Products */;
 			projectDirPath = "";
@@ -186,8 +248,17 @@
 				CC57C3162C4C0F8A00EF1A80 /* ListViewController.swift in Sources */,
 				CC57C32D2C4C149900EF1A80 /* RecordViewController.swift in Sources */,
 				CC57C3122C4C0F8A00EF1A80 /* AppDelegate.swift in Sources */,
+				CC97B5272C4E3E93009AC6E6 /* News.swift in Sources */,
+				CC97B52D2C4E5BB7009AC6E6 /* Secrets.swift in Sources */,
+				CC97B54E2C4E7DD9009AC6E6 /* String+.swift in Sources */,
+				CC97B5502C4E827F009AC6E6 /* APIRepository.swift in Sources */,
+				CC97B5492C4E6CA5009AC6E6 /* ListTableViewCell.swift in Sources */,
 				CC57C32B2C4C149100EF1A80 /* RecordView.swift in Sources */,
+				CC97B5522C4E8741009AC6E6 /* UIScrollView+React.swift in Sources */,
 				CC57C3322C4C177600EF1A80 /* NewsPageView.swift in Sources */,
+				CC97B52B2C4E5B6C009AC6E6 /* ListViewModel.swift in Sources */,
+				CC97B5202C4E3E12009AC6E6 /* APIService.swift in Sources */,
+				CC97B5232C4E3E69009AC6E6 /* DataEntity.swift in Sources */,
 				CC57C3142C4C0F8A00EF1A80 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,7 +476,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC57C3272C4C122E00EF1A80 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		CC97B5382C4E5FB7009AC6E6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -413,13 +484,51 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC57C3282C4C122E00EF1A80 /* SnapKit */ = {
+		CC97B5392C4E5FB7009AC6E6 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC57C3272C4C122E00EF1A80 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = CC97B5382C4E5FB7009AC6E6 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		CC97B53B2C4E5FB7009AC6E6 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B5382C4E5FB7009AC6E6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		CC97B53E2C4E5FBF009AC6E6 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		CC97B5402C4E5FBF009AC6E6 /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		CC97B5422C4E5FBF009AC6E6 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CC97B5442C4E5FBF009AC6E6 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		CC97B5462C4E5FBF009AC6E6 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC97B53D2C4E5FBF009AC6E6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
