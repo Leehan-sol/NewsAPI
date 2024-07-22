@@ -31,8 +31,8 @@
 		CC97B5472C4E5FBF009AC6E6 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = CC97B5462C4E5FBF009AC6E6 /* RxRelay */; };
 		CC97B5492C4E6CA5009AC6E6 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */; };
 		CC97B54E2C4E7DD9009AC6E6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B54D2C4E7DD9009AC6E6 /* String+.swift */; };
-		CC97B5502C4E827F009AC6E6 /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */; };
 		CC97B5522C4E8741009AC6E6 /* UIScrollView+React.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5512C4E8741009AC6E6 /* UIScrollView+React.swift */; };
+		CC97B5562C4EC8DF009AC6E6 /* NewsPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97B5552C4EC8DF009AC6E6 /* NewsPageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +55,8 @@
 		CC97B52C2C4E5BB7009AC6E6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		CC97B54D2C4E7DD9009AC6E6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
 		CC97B5512C4E8741009AC6E6 /* UIScrollView+React.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+React.swift"; sourceTree = "<group>"; };
+		CC97B5552C4EC8DF009AC6E6 /* NewsPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				CC57C3252C4C111800EF1A80 /* ListView.swift */,
+				CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */,
 				CC57C3152C4C0F8A00EF1A80 /* ListViewController.swift */,
 				CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */,
-				CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -136,6 +136,7 @@
 			children = (
 				CC57C3312C4C177600EF1A80 /* NewsPageView.swift */,
 				CC57C3332C4C178200EF1A80 /* NewsPageViewController.swift */,
+				CC97B5552C4EC8DF009AC6E6 /* NewsPageViewModel.swift */,
 			);
 			path = NewsPageView;
 			sourceTree = "<group>";
@@ -145,7 +146,6 @@
 			children = (
 				CC97B5222C4E3E69009AC6E6 /* DataEntity.swift */,
 				CC97B5262C4E3E93009AC6E6 /* News.swift */,
-				CC97B54F2C4E827F009AC6E6 /* APIRepository.swift */,
 				CC97B51F2C4E3E12009AC6E6 /* APIService.swift */,
 			);
 			path = Model;
@@ -243,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC97B5562C4EC8DF009AC6E6 /* NewsPageViewModel.swift in Sources */,
 				CC57C3342C4C178200EF1A80 /* NewsPageViewController.swift in Sources */,
 				CC57C3262C4C111800EF1A80 /* ListView.swift in Sources */,
 				CC57C3162C4C0F8A00EF1A80 /* ListViewController.swift in Sources */,
@@ -251,7 +252,6 @@
 				CC97B5272C4E3E93009AC6E6 /* News.swift in Sources */,
 				CC97B52D2C4E5BB7009AC6E6 /* Secrets.swift in Sources */,
 				CC97B54E2C4E7DD9009AC6E6 /* String+.swift in Sources */,
-				CC97B5502C4E827F009AC6E6 /* APIRepository.swift in Sources */,
 				CC97B5492C4E6CA5009AC6E6 /* ListTableViewCell.swift in Sources */,
 				CC57C32B2C4C149100EF1A80 /* RecordView.swift in Sources */,
 				CC97B5522C4E8741009AC6E6 /* UIScrollView+React.swift in Sources */,

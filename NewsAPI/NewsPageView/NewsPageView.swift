@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import WebKit
 
 class NewsPageView: UIView {
-    
+    var webView = WKWebView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +22,15 @@ class NewsPageView: UIView {
     
     private func setUI() {
         backgroundColor = .systemBackground
+        
+        let subviews = [webView]
+        
+        subviews.forEach { addSubview($0) }
+        
+        webView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalTo(safeAreaLayoutGuide)
+        }
+        
     }
     
 }

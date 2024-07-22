@@ -9,7 +9,9 @@ import Foundation
 
 struct DataEntity: Codable {
     let lastBuildDate: String
-    let total, start, display: Int
+    let total: Int
+    let start: Int
+    let display: Int
     let items: [Item]
 }
 

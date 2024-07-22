@@ -17,7 +17,7 @@ extension String {
     
     private static let outputDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yy/M/d HH:mm"
+        formatter.dateFormat = "yy/M/d H시m분"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter
     }()
@@ -28,7 +28,21 @@ extension String {
         }
         return String.outputDateFormatter.string(from: date)
     }
-    
+
+    func htmlToString() -> String {
+        guard let data = self.data(using: .utf8) else {
+            return self
+        }
+        
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+        
+        let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil)
+        return attributedString?.string ?? self
+    }
+
 }
 
 // 예시 사용

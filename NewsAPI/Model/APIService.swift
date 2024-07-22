@@ -12,11 +12,12 @@ import RxCocoa
 struct APIService {
     let baseURL = "https://openapi.naver.com/v1/search/news.json"
     
-    var startNum = BehaviorSubject<Int>(value: 1)
+    var currentStartNum: BehaviorSubject<Int> = BehaviorSubject(value: 1)
+    var totalCount = PublishSubject<Int>()
     
     func fetchNews(start: Int = 1) -> Observable<[News]> {
         
-        let urlString = baseURL + "?query=대한민국" + "&start=\(start)"
+        let urlString = baseURL + "?query=한국" + "&start=\(start)" // + "&display=100"
         
         guard let url = URL(string: urlString) else {
             return Observable.error(APIError.notValidURL)
@@ -40,18 +41,18 @@ struct APIService {
                 
                 let dataEntity = try JSONDecoder().decode(DataEntity.self, from: data)
                 
-                let currentStartNum = try self.startNum.value()
+                let currentStartNum = try self.currentStartNum.value()
                 if currentStartNum != dataEntity.start {
-                    self.startNum.onNext(dataEntity.start)
+                    self.currentStartNum.onNext(dataEntity.start)
                 }
-                
+                self.totalCount.onNext(dataEntity.total)
                 return dataEntity
             }
             .map { dataEntity -> [News] in
                 return dataEntity.items.map { item in
                     News(
-                        title: item.title,
-                        description: item.description,
+                        title: item.title.htmlToString(),
+                        description: item.description.htmlToString(),
                         date: item.pubDate.formattedDateString() ?? item.pubDate,
                         url: item.link
                     )

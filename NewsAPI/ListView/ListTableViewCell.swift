@@ -12,7 +12,7 @@ class ListTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "제목"
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         return label
     }()
     
@@ -28,6 +28,7 @@ class ListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "본문"
         label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
+        label.numberOfLines = 4
         return label
     }()
     
@@ -47,18 +48,17 @@ class ListTableViewCell: UITableViewCell {
         subviews.forEach { contentView.addSubview($0) }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalTo(dateLabel.snp.leading).offset(-5)
+            $0.top.equalToSuperview().offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         dateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.trailing.equalToSuperview().offset(-20)
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.top.equalTo(dateLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().offset(-20)
         }
