@@ -14,7 +14,7 @@ class ListViewController: UIViewController {
     private let viewModel = ListViewModel()
     private let disposeBag = DisposeBag()
     
-    private let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: ListViewController.self, action: nil)
+    
     
     override func loadView() {
         view = listView
@@ -31,10 +31,7 @@ class ListViewController: UIViewController {
     private func setNavi() {
         title = "News"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        refreshButton.tintColor = .gray
-        navigationItem.rightBarButtonItem = refreshButton
-    
+        navigationItem.rightBarButtonItem = listView.refreshButton
     }
     
     private func setTableView() {
@@ -78,7 +75,7 @@ class ListViewController: UIViewController {
     }
     
     private func setAction() {
-        refreshButton.rx.tap
+        listView.refreshButton.rx.tap
             .bind { [weak self] in
                 self?.viewModel.fetchNews()
                 self?.listView.listTableView.setContentOffset(.zero, animated: true)

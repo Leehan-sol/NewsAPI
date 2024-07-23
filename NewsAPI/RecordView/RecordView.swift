@@ -16,6 +16,21 @@ class RecordView: UIView {
         return tv
     }()
     
+    let indicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        return indicator
+    }()
+    
+    let naviLabel: UILabel = {
+        let label = UILabel()
+        label.text = "30 / 30"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var barButtonItem = UIBarButtonItem(customView: naviLabel)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -29,7 +44,7 @@ class RecordView: UIView {
     private func setUI() {
         backgroundColor = .systemBackground
         
-        let subviews = [recordTableView]
+        let subviews = [recordTableView, indicatorView]
         
         subviews.forEach { addSubview($0) }
         
@@ -37,7 +52,10 @@ class RecordView: UIView {
             $0.top.bottom.leading.trailing.equalTo(safeAreaLayoutGuide)
         }
         
-        
+        indicatorView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
     }
     
 }

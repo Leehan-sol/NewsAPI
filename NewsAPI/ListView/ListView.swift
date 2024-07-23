@@ -40,6 +40,8 @@ class ListView: UIView {
         return view
     }()
     
+    let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: ListViewController.self, action: nil)
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +56,8 @@ class ListView: UIView {
     
     private func setUI() {
         backgroundColor = .systemBackground
-        
+        refreshButton.tintColor = .gray
+    
         let subviews = [listTableView, indicatorView]
         
         subviews.forEach { addSubview($0) }

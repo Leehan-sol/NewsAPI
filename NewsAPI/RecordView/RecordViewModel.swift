@@ -33,6 +33,10 @@ class RecordViewModel {
     }
     
     
+    func saveNews(news: News) {
+        realmService.saveReadNews(news: news)
+    }
+    
     func deleteNews(news: News) {
         realmService.deleteReadNews(news: news)
     }

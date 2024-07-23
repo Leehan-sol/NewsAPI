@@ -84,11 +84,11 @@ class ListTableViewCell: UITableViewCell {
     
     func configure(tableView: TableViewType, news: News) {
         let date = tableView == .ListTableView ? news.date : news.timeStamp.formattedDateStringForView()
-        let bool = tableView == .ListTableView ? true : false
+        let text = tableView == .ListTableView ? "published" : "Recently Watched"
     
         titleLabel.text = news.title
         dateLabel.text = date
         descriptionLabel.text = news.content
-        wathcedLabel.isHidden = bool
+        wathcedLabel.text = text
     }
 }

@@ -28,9 +28,9 @@ class RecordViewController: UIViewController {
     
     
     private func setNavi() {
-        title = "My Record"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        title = "Read History"
+        
+        navigationItem.rightBarButtonItem = recordView.barButtonItem
     }
     
     private func setTableView() {
@@ -52,9 +52,23 @@ class RecordViewController: UIViewController {
                 index, item, cell in
                 cell.configure(tableView: TableViewType.RecordTableView, news: item)
             }.disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] bool in
+                bool ? self?.recordView.indicatorView.startAnimating() : self?.recordView.indicatorView.stopAnimating()
+            }.disposed(by: disposeBag)
     }
     
     private func setAction() {
+        recordView.recordTableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.recordView.recordTableView.deselectRow(at: indexPath, animated: true)
+                guard let selectedNews = try? self?.viewModel.readNews.value()[indexPath.row] else { return }
+                self?.viewModel.saveNews(news: selectedNews)
+                self?.goNewsPage(url: selectedNews.url)
+            }).disposed(by: disposeBag)
+        
         recordView.recordTableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
                 if let news = try? self?.viewModel.readNews.value()[indexPath.row] {
@@ -63,6 +77,11 @@ class RecordViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
+    private func goNewsPage(url: String) {
+        let newsPageVM = NewsPageViewModel(url: url)
+        let newsPageVC = NewsPageViewController(viewModel: newsPageVM)
+        self.navigationController?.pushViewController(newsPageVC, animated: true)
+    }
     
 }
 
