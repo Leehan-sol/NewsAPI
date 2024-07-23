@@ -28,7 +28,14 @@ extension String {
         }
         return String.outputDateFormatter.string(from: date)
     }
-
+    
+    static func fromDate(_ date: Date, withFormat format: String = "yy/M/d H시m분") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter.string(from: date)
+    }
+    
     func htmlToString() -> String {
         guard let data = self.data(using: .utf8) else {
             return self
@@ -42,7 +49,7 @@ extension String {
         let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil)
         return attributedString?.string ?? self
     }
-
+    
 }
 
 // 예시 사용

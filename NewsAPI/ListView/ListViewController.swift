@@ -24,7 +24,6 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         setNavi()
         setTableView()
-        setTapGesture()
         getState()
         setAction()
     }
@@ -32,7 +31,6 @@ class ListViewController: UIViewController {
     private func setNavi() {
         title = "News"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         
         refreshButton.tintColor = .gray
         navigationItem.rightBarButtonItem = refreshButton
@@ -48,8 +46,7 @@ class ListViewController: UIViewController {
         viewModel.news
             .bind(to: listView.listTableView.rx.items(cellIdentifier: "listCell", cellType: ListTableViewCell.self)) {
                 index, item, cell in
-                cell.configure(with: item)
-                print(item.url)
+                cell.configure(tableView: TableViewType.ListTableView, news: item)
             }.disposed(by: disposeBag)
         
         viewModel.isLoading
@@ -100,17 +97,16 @@ class ListViewController: UIViewController {
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.fetchNews()
             }).disposed(by: disposeBag)
-    }
-    
-    
-    private func setTapGesture() {
+        
         listView.listTableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 self?.listView.listTableView.deselectRow(at: indexPath, animated: true)
-                guard let selectedURL = try? self?.viewModel.news.value()[indexPath.row].url else { return }
-                self?.goNewsPage(url: selectedURL)
+                guard let selectedNews = try? self?.viewModel.news.value()[indexPath.row] else { return }
+                self?.viewModel.saveNews(news: selectedNews)
+                self?.goNewsPage(url: selectedNews.url)
             }).disposed(by: disposeBag)
     }
+    
     
     private func showAlert(_ title: String, _ message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -120,7 +116,6 @@ class ListViewController: UIViewController {
     
     private func goNewsPage(url: String) {
         let newsPageVM = NewsPageViewModel(url: url)
-        print("url:", url)
         let newsPageVC = NewsPageViewController(viewModel: newsPageVM)
         self.navigationController?.pushViewController(newsPageVC, animated: true)
     }

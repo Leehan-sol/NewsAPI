@@ -10,7 +10,8 @@ import RxSwift
 import RxCocoa
 
 class ListViewModel {
-    private let service = APIService()
+    private let apiService = APIService()
+    private let realmService = RealmService()
     private let disposeBag = DisposeBag()
     
     let news: BehaviorSubject<[News]> = BehaviorSubject(value: []) // 나중에 private으로 바꾸기
@@ -28,12 +29,12 @@ class ListViewModel {
     }
     
     private func setBindings() {
-        service.currentStartNum
+        apiService.currentStartNum
             .subscribe { start in
                 self.currentStartNum = start
             }.disposed(by: disposeBag)
         
-        service.totalCount
+        apiService.totalCount
             .subscribe { count in
                 self.totalCount = count
             }.disposed(by: disposeBag)
@@ -42,7 +43,7 @@ class ListViewModel {
     func fetchNews(start: Int = 1) {
         isLoading.onNext(true)
         
-        service.fetchNews(start: start)
+        apiService.fetchNews(start: start)
             .do(onError: { error in
                 self.handleError(error)
                 self.isLoading.onNext(false)
@@ -68,6 +69,10 @@ class ListViewModel {
         } else {
             noMoreData.onNext(true)
         }
+    }
+    
+    func saveNews(news: News) {
+        realmService.saveReadNews(news: news)
     }
     
     

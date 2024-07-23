@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum TableViewType {
+    case ListTableView
+    case RecordTableView
+}
+
 class ListTableViewCell: UITableViewCell {
     
     let titleLabel: UILabel = {
@@ -16,10 +21,18 @@ class ListTableViewCell: UITableViewCell {
         return label
     }()
     
+    let wathcedLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Recently Watched"
+        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize)
+        label.textColor = .darkGray
+        return label
+    }()
+    
     let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "날짜"
-        label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize)
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize)
         label.textColor = .darkGray
         return label
     }()
@@ -43,13 +56,18 @@ class ListTableViewCell: UITableViewCell {
     }
     
     private func setUI() {
-        let subviews = [titleLabel, dateLabel, descriptionLabel]
+        let subviews = [titleLabel, wathcedLabel, dateLabel, descriptionLabel]
         
         subviews.forEach { contentView.addSubview($0) }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        wathcedLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.trailing.equalTo(dateLabel.snp.leading).offset(-10)
         }
         
         dateLabel.snp.makeConstraints {
@@ -64,9 +82,13 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with news: News) {
+    func configure(tableView: TableViewType, news: News) {
+        let date = tableView == .ListTableView ? news.date : news.timeStamp
+        let bool = tableView == .ListTableView ? true : false
+    
         titleLabel.text = news.title
-        dateLabel.text = news.date
-        descriptionLabel.text = news.description
+        dateLabel.text = date
+        descriptionLabel.text = news.content
+        wathcedLabel.isHidden = bool
     }
 }

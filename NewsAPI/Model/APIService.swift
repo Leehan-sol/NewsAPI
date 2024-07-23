@@ -51,10 +51,12 @@ struct APIService {
             .map { dataEntity -> [News] in
                 return dataEntity.items.map { item in
                     News(
+                        id: UUID().uuidString,
                         title: item.title.htmlToString(),
-                        description: item.description.htmlToString(),
+                        content: item.description.htmlToString(),
                         date: item.pubDate.formattedDateString() ?? item.pubDate,
-                        url: item.link
+                        url: item.link,
+                        timeStamp: ""
                     )
                 }
             }

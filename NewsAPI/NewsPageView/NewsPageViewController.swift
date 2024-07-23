@@ -35,6 +35,12 @@ class NewsPageViewController: UIViewController, WKNavigationDelegate {
         setTapGesture()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+    }
+    
     private func setNavi() {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
