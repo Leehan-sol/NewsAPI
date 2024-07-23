@@ -20,7 +20,7 @@ class ListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "날짜"
         label.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .caption1).pointSize)
-        label.tintColor = .gray
+        label.textColor = .darkGray
         return label
     }()
     

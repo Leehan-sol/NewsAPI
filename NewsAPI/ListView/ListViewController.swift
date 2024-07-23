@@ -43,24 +43,7 @@ class ListViewController: UIViewController {
         listView.listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listCell")
         listView.listTableView.tableFooterView?.isHidden = true
     }
-    
-    private func setTapGesture() {
-        
-        refreshButton.rx.tap
-            .bind { [weak self] in
-                self?.viewModel.fetchNews()
-                self?.listView.listTableView.setContentOffset(.zero, animated: true)
-            }
-            .disposed(by: disposeBag)
-        
-        listView.listTableView.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                self?.listView.listTableView.deselectRow(at: indexPath, animated: true)
-                guard let selectedURL = try? self?.viewModel.news.value()[indexPath.row].url else { return }
-                self?.goNewsPage(url: selectedURL)
-            }).disposed(by: disposeBag)
-    }
-    
+
     private func getState() {
         viewModel.news
             .bind(to: listView.listTableView.rx.items(cellIdentifier: "listCell", cellType: ListTableViewCell.self)) {
@@ -98,23 +81,36 @@ class ListViewController: UIViewController {
     }
     
     private func setAction() {
-        listView.listTableView.rx
-            .bottomReached
+        refreshButton.rx.tap
+            .bind { [weak self] in
+                self?.viewModel.fetchNews()
+                self?.listView.listTableView.setContentOffset(.zero, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        listView.listTableView.rx.bottomReached
             .skip(1)
             .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.fetchMore()
             }).disposed(by: disposeBag)
         
-        listView.refreshControl
-            .rx
-            .controlEvent(.valueChanged)
+        listView.refreshControl.rx.controlEvent(.valueChanged)
             .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.fetchNews()
             }).disposed(by: disposeBag)
     }
     
+    
+    private func setTapGesture() {
+        listView.listTableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.listView.listTableView.deselectRow(at: indexPath, animated: true)
+                guard let selectedURL = try? self?.viewModel.news.value()[indexPath.row].url else { return }
+                self?.goNewsPage(url: selectedURL)
+            }).disposed(by: disposeBag)
+    }
     
     private func showAlert(_ title: String, _ message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
