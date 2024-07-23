@@ -30,6 +30,9 @@ class News: Object {
         self.timeStamp = timeStamp
     }
     
+    override static func primaryKey() -> String? {
+        return "url"
+    }
 
 }
 

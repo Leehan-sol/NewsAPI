@@ -75,7 +75,6 @@ class ListViewModel {
         realmService.saveReadNews(news: news)
     }
     
-    
     private func handleError(_ error: Error) {
         if let apiError = error as? APIService.APIError {
             errorTrigger.onNext(apiError.errorMessage)

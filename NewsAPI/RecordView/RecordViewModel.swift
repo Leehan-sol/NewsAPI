@@ -32,4 +32,9 @@ class RecordViewModel {
             }).disposed(by: disposeBag)
     }
     
+    
+    func deleteNews(news: News) {
+        realmService.deleteReadNews(news: news)
+    }
+    
 }

@@ -83,7 +83,7 @@ class ListTableViewCell: UITableViewCell {
     }
     
     func configure(tableView: TableViewType, news: News) {
-        let date = tableView == .ListTableView ? news.date : news.timeStamp
+        let date = tableView == .ListTableView ? news.date : news.timeStamp.formattedDateStringForView()
         let bool = tableView == .ListTableView ? true : false
     
         titleLabel.text = news.title

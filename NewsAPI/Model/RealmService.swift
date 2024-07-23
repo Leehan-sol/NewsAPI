@@ -10,71 +10,70 @@ import RxSwift
 import RealmSwift
 
 struct RealmService {
-    let realm = try? Realm()
-    
-    //    func loadReadNews() -> Observable<[News]> {
-    //        return Observable<Results<News>>.create { observer in
-    //            if let results = self.realm?.objects(News.self) {
-    //                observer.onNext(results)
-    //            }
-    //            return Disposables.create()
-    //        }
-    //        .map { results in
-    //            return Array(results)
-    //        }
-    //    }
-    
+    var realm = try? Realm()
     
     func loadReadNews() -> Observable<[News]> {
         return Observable.create { [self] observer in
-            // Realm의 Results 객체 가져오기
             guard let realm = realm else {
                 observer.onError(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to get Realm instance"]))
                 return Disposables.create()
             }
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
             
-            let results = realm.objects(News.self)
             
-            // NotificationToken로 Results 변화 감지
-            let notificationToken = results.observe { changes in
+            let noti = realm.objects(News.self).observe { changes in
                 switch changes {
-                case .initial(let initialResults):
-                    observer.onNext(Array(initialResults))
-                case .update(_, let deletions, let insertions, let modifications):
-                    // 데이터 변경 시 업데이트 제공
-                    var updatedResults = Array(results)
-                    
-                    // 여기서 필요한 경우, 변경 사항 처리
-                    // 예를 들어, 삭제, 삽입, 수정된 항목을 처리할 수 있습니다.
-                    observer.onNext(updatedResults)
+                case .initial(let results):
+                    observer.onNext(Array(results))
+                case .update(let results, _, _, _):
+                    observer.onNext(Array(results))
                 case .error(let error):
                     observer.onError(error)
                 }
             }
             return Disposables.create {
-                notificationToken.invalidate()
+                noti.invalidate()
             }
+        }
+        .map { (newsArray: [News]) -> [News] in
+            return newsArray.sorted(by: { news1, news2 in
+                guard let date1 = news1.timeStamp.toDate(), let date2 = news2.timeStamp.toDate() else {
+                    return false
+                }
+                return date1 > date2
+            })
         }
     }
     
     func saveReadNews(news: News) {
-        let now = String.fromDate(Date())
-        news.timeStamp = now
-        
+        let now = String.dateToString(Date())
         do {
-            //            print(Realm.Configuration.defaultConfiguration.fileURL!.path)
             try realm?.write {
-                realm?.add(news)
+                if let existingNews = realm?.object(ofType: News.self, forPrimaryKey: news.url) {
+                    existingNews.timeStamp = now
+                } else {
+                    news.timeStamp = now
+                    realm?.add(news)
+                }
             }
         } catch {
             print("Error saving news: \(error.localizedDescription)")
         }
     }
     
-    func deleteReadNews(news: News) {
-        
-    }
     
+    func deleteReadNews(news: News) {
+        do {
+            try realm?.write {
+                if let existingNews = realm?.object(ofType: News.self, forPrimaryKey: news.url) {
+                    realm?.delete(existingNews)
+                }
+            }
+        } catch {
+            print("Error deleting memoData: \(error)")
+            
+        }
+    }
     
     
     

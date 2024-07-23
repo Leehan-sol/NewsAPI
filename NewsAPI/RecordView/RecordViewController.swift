@@ -19,9 +19,11 @@ class RecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTableView()
         setNavi()
+        setTableView()
+        setGesture()
         getState()
+        setAction()
     }
     
     
@@ -33,8 +35,16 @@ class RecordViewController: UIViewController {
     
     private func setTableView() {
         recordView.recordTableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listCell")
-        //        recordView.recordTableView.tableFooterView?.isHidden = true
     }
+    
+    private func setGesture() {
+        recordView.recordTableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.recordView.recordTableView.beginUpdates()
+                self?.recordView.recordTableView.endUpdates()
+            }).disposed(by: disposeBag)
+    }
+    
     
     private func getState() {
         viewModel.readNews
@@ -42,7 +52,17 @@ class RecordViewController: UIViewController {
                 index, item, cell in
                 cell.configure(tableView: TableViewType.RecordTableView, news: item)
             }.disposed(by: disposeBag)
-        
     }
+    
+    private func setAction() {
+        recordView.recordTableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] indexPath in
+                if let news = try? self?.viewModel.readNews.value()[indexPath.row] {
+                    self?.viewModel.deleteNews(news: news)
+                }
+            }).disposed(by: disposeBag)
+    }
+    
+    
 }
 

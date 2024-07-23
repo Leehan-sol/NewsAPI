@@ -8,34 +8,59 @@
 import Foundation
 
 extension String {
-    private static let inputDateFormatter: DateFormatter = {
+    private static let apiInputDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss Z"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
     
-    private static let outputDateFormatter: DateFormatter = {
+    private static let realmInputDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy/M/d H시m분ss초"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
+    
+    private static let realmDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy/M/d H시m분ss초"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
+    }()
+    
+    private static let viewDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy/M/d H시m분"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter
     }()
     
-    func formattedDateString() -> String? {
-        guard let date = String.inputDateFormatter.date(from: self) else {
+    // 날짜 형식 String으로 변환
+    func formattedDateStringForView() -> String? {
+        if let apiDate = String.apiInputDateFormatter.date(from: self) {
+            return String.viewDateFormatter.string(from: apiDate)
+        } else if let realmDate = String.realmInputDateFormatter.date(from: self) {
+            return String.viewDateFormatter.string(from: realmDate)
+        } else {
             return nil
         }
-        return String.outputDateFormatter.string(from: date)
     }
     
-    static func fromDate(_ date: Date, withFormat format: String = "yy/M/d H시m분") -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter.string(from: date)
+    // Date를 String으로 변환 (Realm에 저장시 사용)
+    static func dateToString(_ date: Date) -> String {
+        return realmDateFormatter.string(from: date)
     }
     
+    // String을 Date로 변환 (Realm에서 로드, 정렬시 사용)
+    func toDate() -> Date? {
+        return String.realmDateFormatter.date(from: self)
+    }
+    
+}
+
+
+extension String {
     func htmlToString() -> String {
         guard let data = self.data(using: .utf8) else {
             return self
@@ -49,13 +74,4 @@ extension String {
         let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil)
         return attributedString?.string ?? self
     }
-    
 }
-
-// 예시 사용
-//let originalDateString = "Thu, 18 Jul 2024 14:28:00 +0900"
-//if let formattedDateString = originalDateString.formattedDateString() {
-//    print(formattedDateString) // 출력: "7/18/2024 14시28분"
-//} else {
-//    print("날짜 형식이 잘못되었습니다.")
-//}

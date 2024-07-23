@@ -54,7 +54,7 @@ struct APIService {
                         id: UUID().uuidString,
                         title: item.title.htmlToString(),
                         content: item.description.htmlToString(),
-                        date: item.pubDate.formattedDateString() ?? item.pubDate,
+                        date: item.pubDate.formattedDateStringForView() ?? item.pubDate,
                         url: item.link,
                         timeStamp: ""
                     )
