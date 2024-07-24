@@ -15,7 +15,7 @@ class ListViewModel {
     private let disposeBag = DisposeBag()
     
     private let news: BehaviorSubject<[News]> = BehaviorSubject(value: [])
-    private let isLoading: BehaviorSubject<Bool> = BehaviorSubject(value: false) // indicatorView
+    private let isLoading: BehaviorSubject<Bool> = BehaviorSubject(value: false)// indicatorView
     private let noMoreData: BehaviorSubject<Bool> = BehaviorSubject(value: false) // bottomView
     private let apiError = PublishSubject<String>()
     private let moveNews =  PublishSubject<String>()

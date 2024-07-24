@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-class NewsPageViewController: UIViewController, WKNavigationDelegate {
+class NewsPageViewController: UIViewController {
     private let newsPageView = NewsPageView()
     private let viewModel: NewsPageViewModel
     private let disposeBag = DisposeBag()

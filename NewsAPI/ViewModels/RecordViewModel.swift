@@ -47,8 +47,7 @@ class RecordViewModel {
                       isLoading: isLoading,
                       moveNews: moveNews)
     }
-    
-    
+
     
     init() {
         loadNews()

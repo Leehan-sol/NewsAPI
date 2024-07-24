@@ -85,8 +85,6 @@ struct RealmService {
         }
     }
     
-    
-    
 }
 
 

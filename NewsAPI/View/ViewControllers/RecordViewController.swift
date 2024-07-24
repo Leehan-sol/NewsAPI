@@ -105,6 +105,7 @@ class RecordViewController: UIViewController {
 }
 
 
+// MARK: - RecordViewController
 extension RecordViewController {
     private func goNewsPage(url: String) {
         let newsPageVM = NewsPageViewModel(url: url)

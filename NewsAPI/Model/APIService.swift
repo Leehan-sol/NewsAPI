@@ -69,7 +69,7 @@ struct APIService {
 }
 
 
-// MARK: - Extension
+// MARK: - APIError
 extension APIService {
     enum APIError : Error {
         case notValidURL
@@ -88,4 +88,5 @@ extension APIService {
             }
         }
     }
+    
 }
