@@ -45,10 +45,20 @@ struct RealmService {
         }
     }
     
+    
     func saveReadNews(news: News) {
         let now = String.dateToString(Date())
+        
         do {
             try realm?.write {
+                let newsCount = realm?.objects(News.self).count ?? 0
+                
+                if newsCount >= 30 {
+                    if let oldestNews = realm?.objects(News.self).sorted(byKeyPath: "timeStamp", ascending: true).first {
+                        realm?.delete(oldestNews)
+                    }
+                }
+                
                 if let existingNews = realm?.object(ofType: News.self, forPrimaryKey: news.url) {
                     existingNews.timeStamp = now
                 } else {
