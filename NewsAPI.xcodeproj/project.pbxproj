@@ -109,9 +109,8 @@
 				CC57C3132C4C0F8A00EF1A80 /* SceneDelegate.swift */,
 				CC97B54A2C4E7D74009AC6E6 /* Util */,
 				CC97B5212C4E3E51009AC6E6 /* Model */,
-				CC57C32E2C4C174400EF1A80 /* ListView */,
-				CC57C32F2C4C175300EF1A80 /* RecordView */,
-				CC57C3302C4C175E00EF1A80 /* NewsPageView */,
+				CC641B082C50F03A00E5780D /* View */,
+				CC641B0B2C50F07000E5780D /* ViewModels */,
 				CC57C31A2C4C0F8A00EF1A80 /* Assets.xcassets */,
 				CC57C31C2C4C0F8B00EF1A80 /* LaunchScreen.storyboard */,
 				CC57C31F2C4C0F8B00EF1A80 /* Info.plist */,
@@ -119,35 +118,52 @@
 			path = NewsAPI;
 			sourceTree = "<group>";
 		};
-		CC57C32E2C4C174400EF1A80 /* ListView */ = {
+		CC641B082C50F03A00E5780D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC641B0D2C50F3AF00E5780D /* Views */,
+				CC641B0A2C50F05500E5780D /* Cells */,
+				CC641B0C2C50F0FB00E5780D /* ViewControllers */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC641B0A2C50F05500E5780D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CC641B0B2C50F07000E5780D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */,
+				CC45270C2C4FB284007F6959 /* RecordViewModel.swift */,
+				CC97B5552C4EC8DF009AC6E6 /* NewsPageViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CC641B0C2C50F0FB00E5780D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC57C3152C4C0F8A00EF1A80 /* ListViewController.swift */,
+				CC57C32C2C4C149900EF1A80 /* RecordViewController.swift */,
+				CC57C3332C4C178200EF1A80 /* NewsPageViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CC641B0D2C50F3AF00E5780D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CC57C3252C4C111800EF1A80 /* ListView.swift */,
-				CC97B5482C4E6CA5009AC6E6 /* ListTableViewCell.swift */,
-				CC57C3152C4C0F8A00EF1A80 /* ListViewController.swift */,
-				CC97B52A2C4E5B6C009AC6E6 /* ListViewModel.swift */,
-			);
-			path = ListView;
-			sourceTree = "<group>";
-		};
-		CC57C32F2C4C175300EF1A80 /* RecordView */ = {
-			isa = PBXGroup;
-			children = (
 				CC57C32A2C4C149100EF1A80 /* RecordView.swift */,
-				CC57C32C2C4C149900EF1A80 /* RecordViewController.swift */,
-				CC45270C2C4FB284007F6959 /* RecordViewModel.swift */,
-			);
-			path = RecordView;
-			sourceTree = "<group>";
-		};
-		CC57C3302C4C175E00EF1A80 /* NewsPageView */ = {
-			isa = PBXGroup;
-			children = (
 				CC57C3312C4C177600EF1A80 /* NewsPageView.swift */,
-				CC57C3332C4C178200EF1A80 /* NewsPageViewController.swift */,
-				CC97B5552C4EC8DF009AC6E6 /* NewsPageViewModel.swift */,
 			);
-			path = NewsPageView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CC97B5212C4E3E51009AC6E6 /* Model */ = {
