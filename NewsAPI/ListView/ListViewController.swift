@@ -14,18 +14,25 @@ class ListViewController: UIViewController {
     private let viewModel = ListViewModel()
     private let disposeBag = DisposeBag()
     
-    
-    
     override func loadView() {
         view = listView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavi()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavi()
         setTableView()
+        setGesture()
         getState()
         setAction()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        title = ""
     }
     
     private func setNavi() {
@@ -36,9 +43,17 @@ class ListViewController: UIViewController {
     
     private func setTableView() {
         listView.listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: "listCell")
+        listView.listTableView.tableFooterView = listView.bottomView
         listView.listTableView.tableFooterView?.isHidden = true
     }
-
+    
+    private func setGesture() {
+        listView.scrollToTopButton.rx.tap
+            .bind { [weak self] in
+                self?.listView.listTableView.setContentOffset(.zero, animated: true)
+            }.disposed(by: disposeBag)
+    }
+    
     private func getState() {
         viewModel.news
             .bind(to: listView.listTableView.rx.items(cellIdentifier: "listCell", cellType: ListTableViewCell.self)) {
@@ -51,12 +66,6 @@ class ListViewController: UIViewController {
             .subscribe { [weak self] bool in
                 bool ? self?.listView.indicatorView.startAnimating() : self?.listView.indicatorView.stopAnimating()
             }.disposed(by: disposeBag)
-        
-        viewModel.endRefresh
-            .observe(on: MainScheduler.instance)
-            .bind(onNext: { [weak self] in
-                self?.listView.refreshControl.endRefreshing()
-            }).disposed(by: disposeBag)
         
         viewModel.noMoreData
             .observe(on: MainScheduler.instance)
@@ -79,20 +88,13 @@ class ListViewController: UIViewController {
             .bind { [weak self] in
                 self?.viewModel.fetchNews()
                 self?.listView.listTableView.setContentOffset(.zero, animated: true)
-            }
-            .disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
         
         listView.listTableView.rx.bottomReached
             .skip(1)
             .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.fetchMore()
-            }).disposed(by: disposeBag)
-        
-        listView.refreshControl.rx.controlEvent(.valueChanged)
-            .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                self?.viewModel.fetchNews()
             }).disposed(by: disposeBag)
         
         listView.listTableView.rx.itemSelected

@@ -28,7 +28,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarVC.tabBar.backgroundColor = .white
         
         guard let items = tabBarVC.tabBar.items else { return }
-        
         items[0].image = UIImage(systemName: "newspaper")
         items[1].image = UIImage(systemName: "square.and.pencil")
         

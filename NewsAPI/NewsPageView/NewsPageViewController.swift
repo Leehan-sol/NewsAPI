@@ -35,16 +35,9 @@ class NewsPageViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setWebView()
         setTapGesture()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
     
     private func setWebView() {
         if let url = URL(string: viewModel.url) {

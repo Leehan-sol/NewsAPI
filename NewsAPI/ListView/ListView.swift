@@ -20,10 +20,14 @@ class ListView: UIView {
         return indicator
     }()
     
-    let refreshControl : UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .systemBlue.withAlphaComponent(0.5)
-        return refreshControl
+    let scrollToTopButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(systemName: "arrow.up.to.line.compact"), for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = .gray.withAlphaComponent(0.5)
+        btn.layer.cornerRadius = 25
+        btn.layer.masksToBounds = true
+        return btn
     }()
     
     let bottomView: UIView = {
@@ -42,11 +46,10 @@ class ListView: UIView {
     
     let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: ListViewController.self, action: nil)
     
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
-        setTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -57,8 +60,8 @@ class ListView: UIView {
     private func setUI() {
         backgroundColor = .systemBackground
         refreshButton.tintColor = .gray
-    
-        let subviews = [listTableView, indicatorView]
+        
+        let subviews = [listTableView, indicatorView, scrollToTopButton]
         
         subviews.forEach { addSubview($0) }
         
@@ -70,11 +73,14 @@ class ListView: UIView {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
+        
+        scrollToTopButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            $0.width.height.equalTo(50)
+        }
     }
     
-    private func setTableView() {
-        listTableView.refreshControl = refreshControl
-        listTableView.tableFooterView = bottomView
-    }
+    
 }
 

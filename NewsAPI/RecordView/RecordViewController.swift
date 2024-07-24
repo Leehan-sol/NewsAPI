@@ -17,9 +17,13 @@ class RecordViewController: UIViewController {
         view = recordView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavi()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavi()
         setTableView()
         setGesture()
         getState()
@@ -29,7 +33,6 @@ class RecordViewController: UIViewController {
     
     private func setNavi() {
         title = "Read History"
-        
         navigationItem.rightBarButtonItem = recordView.barButtonItem
     }
     
@@ -43,6 +46,11 @@ class RecordViewController: UIViewController {
                 self?.recordView.recordTableView.beginUpdates()
                 self?.recordView.recordTableView.endUpdates()
             }).disposed(by: disposeBag)
+        
+        recordView.scrollToTopButton.rx.tap
+            .bind { [weak self] in
+                self?.recordView.recordTableView.setContentOffset(.zero, animated: true)
+            }.disposed(by: disposeBag)
     }
     
     

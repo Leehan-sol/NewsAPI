@@ -16,7 +16,6 @@ class ListViewModel {
     
     let news: BehaviorSubject<[News]> = BehaviorSubject(value: []) // 나중에 private으로 바꾸기
     let isLoading: BehaviorSubject<Bool> = BehaviorSubject(value: false) // indicatorView
-    let endRefresh = PublishSubject<Void>() // refreshControl
     let noMoreData: BehaviorSubject<Bool> = BehaviorSubject(value: false) // bottomView
     let errorTrigger = PublishSubject<String>()
     
@@ -51,7 +50,6 @@ class ListViewModel {
             .subscribe(onNext: { news in
                 if self.currentStartNum == 1 {
                     self.news.onNext(news)
-                    self.endRefresh.onNext(())
                 } else {
                     let currentNewsLists = (try? self.news.value()) ?? []
                     self.news.onNext(currentNewsLists + news)
