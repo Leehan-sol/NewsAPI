@@ -14,7 +14,9 @@ class RecordViewModel {
     private let disposeBag = DisposeBag()
     
     let readNews: BehaviorSubject<[News]> = BehaviorSubject(value: [])
+    let readNewsCount: BehaviorSubject<Int> = BehaviorSubject(value: 0)
     let isLoading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+    
     
     init() {
         loadNews()
@@ -26,7 +28,7 @@ class RecordViewModel {
         
         realmService.loadReadNews()
             .subscribe(onNext: { [weak self] news in
-                print(news)
+                self?.readNewsCount.onNext(news.count)
                 self?.readNews.onNext(news)
                 self?.isLoading.onNext(false)
             }).disposed(by: disposeBag)
@@ -40,5 +42,6 @@ class RecordViewModel {
     func deleteNews(news: News) {
         realmService.deleteReadNews(news: news)
     }
+    
     
 }

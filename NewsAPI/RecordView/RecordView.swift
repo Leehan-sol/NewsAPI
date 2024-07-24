@@ -32,15 +32,37 @@ class RecordView: UIView {
         return btn
     }()
     
-    let naviLabel: UILabel = {
+    let countLabel: UILabel = {
         let label = UILabel()
-        label.text = "30 / 30"
+        label.text = "30"
         label.font = UIFont.systemFont(ofSize: 16)
-        label.sizeToFit()
         return label
     }()
     
-    lazy var barButtonItem = UIBarButtonItem(customView: naviLabel)
+    let countHolderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "/ 30"
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    lazy var naviView: UIView = {
+        let view = UIView()
+        view.addSubview(countLabel)
+        view.addSubview(countHolderLabel)
+        
+        countLabel.snp.makeConstraints {
+            $0.trailing.equalTo(countHolderLabel.snp.leading).offset(-2)
+            $0.centerY.equalToSuperview()
+        }
+        countHolderLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(5)
+            $0.centerY.equalToSuperview()
+        }
+        return view
+    }()
+    
+    lazy var barButtonItem = UIBarButtonItem(customView: naviView)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

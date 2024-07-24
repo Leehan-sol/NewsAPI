@@ -61,6 +61,11 @@ class RecordViewController: UIViewController {
                 cell.configure(tableView: TableViewType.RecordTableView, news: item)
             }.disposed(by: disposeBag)
         
+        viewModel.readNewsCount
+            .map { String($0) }
+            .bind(to: recordView.countLabel.rx.text) 
+            .disposed(by: disposeBag)
+        
         viewModel.isLoading
             .observe(on: MainScheduler.instance)
             .subscribe { [weak self] bool in
@@ -79,9 +84,11 @@ class RecordViewController: UIViewController {
         
         recordView.recordTableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
+                self?.recordView.recordTableView.beginUpdates()
                 if let news = try? self?.viewModel.readNews.value()[indexPath.row] {
                     self?.viewModel.deleteNews(news: news)
                 }
+                self?.recordView.recordTableView.endUpdates()
             }).disposed(by: disposeBag)
     }
     
