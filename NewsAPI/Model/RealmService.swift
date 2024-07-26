@@ -20,7 +20,6 @@ struct RealmService {
             }
             print(Realm.Configuration.defaultConfiguration.fileURL!)
             
-            
             let noti = realm.objects(News.self).observe { changes in
                 switch changes {
                 case .initial(let results):

@@ -80,7 +80,6 @@ class ListViewModel {
     
     private func fetchNews(start: Int = 1) {
         isLoading.onNext(true)
-        
         apiService.fetchNews(start: start)
             .do(onError: { error in
                 self.handleError(error)
@@ -92,14 +91,17 @@ class ListViewModel {
                 } else {
                     let currentNewsLists = (try? self.news.value()) ?? []
                     self.news.onNext(currentNewsLists + news)
+                    print("뉴스 count:", currentNewsLists.count)
                 }
                 self.isLoading.onNext(false)
             }).disposed(by: disposeBag)
     }
     
     private func fetchMore() {
+        print(#function)
         if currentStartNum < 1000 && currentStartNum < totalCount {
             fetchNews(start: currentStartNum + 10)
+            print("currentStartNum: ", currentStartNum)
         } else {
             noMoreData.onNext(true)
         }

@@ -67,7 +67,7 @@ class ListViewController: UIViewController {
         
         listView.listTableView.rx.bottomReached
             .skip(1)
-            .throttle(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+            .throttle(RxTimeInterval.seconds(3), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.fetchMoreAction.onNext(())
             }).disposed(by: disposeBag)
@@ -104,8 +104,7 @@ class ListViewController: UIViewController {
                 if bool {
                     self?.listView.bottomView.isHidden = false
                 }
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         output.apiError
             .observe(on: MainScheduler.instance)
