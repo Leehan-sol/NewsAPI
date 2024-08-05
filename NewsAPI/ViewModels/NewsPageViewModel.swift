@@ -14,7 +14,6 @@ class NewsPageViewModel {
 
     init(url: String) {
         self.url = url
-
     }
     
 }

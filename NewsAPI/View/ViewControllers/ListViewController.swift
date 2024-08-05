@@ -11,12 +11,21 @@ import RxCocoa
 
 class ListViewController: UIViewController {
     private let listView = ListView()
-    private let viewModel = ListViewModel()
+    private var viewModel: ListViewModel
     private let disposeBag = DisposeBag()
     
     let refreshAction = PublishSubject<Void>()
     let fetchMoreAction = PublishSubject<Void>()
     let saveReadNewsAction = PublishSubject<Int>()
+    
+    init(viewModel: ListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = listView

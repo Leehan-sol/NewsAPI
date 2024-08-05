@@ -9,7 +9,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct APIService {
+protocol APIServiceProtocol {
+    var currentStartNum: BehaviorSubject<Int> { get }
+    var totalCount: PublishSubject<Int> { get }
+    func fetchNews(start: Int) -> Observable<[News]>
+}
+
+struct APIService: APIServiceProtocol {
     let baseURL = "https://openapi.naver.com/v1/search/news.json"
     
     var currentStartNum: BehaviorSubject<Int> = BehaviorSubject(value: 1)

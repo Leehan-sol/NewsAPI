@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class ListViewModel {
-    private let apiService = APIService()
+    private let apiService: APIServiceProtocol
     private let realmService = RealmService()
     private let disposeBag = DisposeBag()
     
@@ -61,7 +61,8 @@ class ListViewModel {
     }
     
     
-    init() {
+    init(apiService: APIServiceProtocol) {
+        self.apiService = apiService
         setBindings()
         fetchNews()
     }
@@ -86,12 +87,13 @@ class ListViewModel {
                 self.isLoading.onNext(false)
             })
             .subscribe(onNext: { news in
+                print("Fetched news: \(news)")
                 if self.currentStartNum == 1 {
                     self.news.onNext(news)
                 } else {
                     let currentNewsLists = (try? self.news.value()) ?? []
                     self.news.onNext(currentNewsLists + news)
-                    print("뉴스 count:", currentNewsLists.count)
+                    print("Current news count: \(currentNewsLists.count)")
                 }
                 self.isLoading.onNext(false)
             }).disposed(by: disposeBag)

@@ -24,27 +24,3 @@ extension Reactive where Base: UIScrollView {
     }
     
 }
-
-//
-//extension Reactive where Base: UIScrollView {
-//    var bottomReached: Observable<Void> {
-//        return Observable.create { [weak base] observer in
-//            guard let scrollView = base else { return Disposables.create() }
-//            
-//            let contentOffsetObserver = scrollView.rx.contentOffset
-//               
-//                .filter { [weak scrollView] offset in
-//                    guard let scrollView = scrollView else { return false }
-//                    let height = scrollView.frame.size.height
-//                    let contentYOffset = offset.y
-//                    let distanceFromBottom = scrollView.contentSize.height - contentYOffset
-//                    return distanceFromBottom < height
-//                }
-//                .map { _ in }
-//                .subscribe(observer)
-//            
-//            return Disposables.create(contentOffsetObserver)
-//        }
-//    }
-//}
-//

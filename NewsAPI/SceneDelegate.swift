@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarVC = UITabBarController()
         
-        let listVC = UINavigationController(rootViewController: ListViewController())
+        let apiService = APIService()
+        let listVM = ListViewModel(apiService: apiService)
+        let listVC = UINavigationController(rootViewController: ListViewController(viewModel: listVM))
         let recordVC = UINavigationController(rootViewController: RecordViewController())
         
         listVC.title = "News"

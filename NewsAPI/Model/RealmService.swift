@@ -18,7 +18,6 @@ struct RealmService {
                 observer.onError(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to get Realm instance"]))
                 return Disposables.create()
             }
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
             
             let noti = realm.objects(News.self).observe { changes in
                 switch changes {
@@ -83,6 +82,21 @@ struct RealmService {
             
         }
     }
+    
+    
+    func printRealmSchemaVersion() {
+         if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
+             do {
+                 let version = try schemaVersionAtURL(fileURL)
+                 print("Schema Version: \(version)") // 현재 스키마 버전 출력
+             } catch {
+                 print("Error fetching schema version: \(error)")
+             }
+         } else {
+             print("Failed to get Realm file URL")
+         }
+     }
+    
     
 }
 
