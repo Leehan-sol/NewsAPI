@@ -12,7 +12,6 @@ class MockAPIService: APIServiceProtocol {
     var currentStartNum = BehaviorSubject<Int>(value: 1)
     var totalCount = PublishSubject<Int>()
     
-    
     func fetchNews(start: Int) -> Observable<[News]> {
         let mockNews = [News(id: "", title: "", content: "", date: "", url: "", timeStamp: ""),
                         News(id: "", title: "", content: "", date: "", url: "", timeStamp: "")]

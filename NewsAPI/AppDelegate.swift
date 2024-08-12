@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
           
           let config = Realm.Configuration(
-              schemaVersion: 0,
+              schemaVersion: 1,
               migrationBlock: { migration, oldSchemaVersion in
                   // 마이그레이션시 로직 추가
               },
@@ -29,6 +29,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           
           return true
       }
-
 }
 
