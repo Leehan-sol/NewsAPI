@@ -10,14 +10,14 @@ import RxSwift
 
 class RecordViewModel {
     
-    private let realmService = RealmService()
+    private let realmService: RealmServiceProtocol
     private let disposeBag = DisposeBag()
     
     let readNews: BehaviorSubject<[News]> = BehaviorSubject(value: [])
     let readNewsCount: BehaviorSubject<Int> = BehaviorSubject(value: 0)
     let isLoading: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     let moveNews = PublishSubject<String>()
-    
+    let deleteNews = PublishSubject<String>()
     
     struct Input {
         let saveReadNewsAction: PublishSubject<Int>
@@ -29,6 +29,7 @@ class RecordViewModel {
         let readNewsCount: BehaviorSubject<Int>
         let isLoading: BehaviorSubject<Bool>
         let moveNews: PublishSubject<String>
+        let deleteNews: PublishSubject<String>
     }
     
     func transform(input: Input) -> Output {
@@ -45,16 +46,18 @@ class RecordViewModel {
         return Output(readNews: readNews,
                       readNewsCount: readNewsCount,
                       isLoading: isLoading,
-                      moveNews: moveNews)
+                      moveNews: moveNews,
+                      deleteNews: deleteNews)
     }
 
     
-    init() {
+    init(realmService: RealmServiceProtocol) {
+        self.realmService = realmService
         loadNews()
     }
     
     
-    private func loadNews() {
+    func loadNews() {
         isLoading.onNext(true)
         
         realmService.loadReadNews()
@@ -75,6 +78,7 @@ class RecordViewModel {
     func deleteNews(index: Int) {
         guard let selectedNews = try? readNews.value()[index] else { return }
         realmService.deleteReadNews(news: selectedNews)
+        deleteNews.onNext(selectedNews.url)
     }
     
     

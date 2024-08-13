@@ -13,8 +13,10 @@ class MockAPIService: APIServiceProtocol {
     var totalCount = PublishSubject<Int>()
     
     func fetchNews(start: Int) -> Observable<[News]> {
-        let mockNews = [News(id: "", title: "", content: "", date: "", url: "", timeStamp: ""),
-                        News(id: "", title: "", content: "", date: "", url: "", timeStamp: "")]
+        let mockNews = [
+            News(id: "1", title: "test", content: "test", date: "test", url: "test", timeStamp: ""),
+            News(id: "2", title: "test", content: "test", date: "test", url: "test", timeStamp: "")
+        ]
         return Observable.just(mockNews)
     }
     

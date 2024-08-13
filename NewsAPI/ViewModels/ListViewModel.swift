@@ -100,7 +100,6 @@ class ListViewModel {
     }
     
     private func fetchMore() {
-        print(#function)
         if currentStartNum < 1000 && currentStartNum < totalCount {
             fetchNews(start: currentStartNum + 10)
             print("currentStartNum: ", currentStartNum)

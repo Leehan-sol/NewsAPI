@@ -20,7 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let apiService = APIService()
         let listVM = ListViewModel(apiService: apiService)
         let listVC = UINavigationController(rootViewController: ListViewController(viewModel: listVM))
-        let recordVC = UINavigationController(rootViewController: RecordViewController())
+        
+        let realmService = RealmService()
+        let recordVM = RecordViewModel(realmService: realmService)
+        let recordVC = UINavigationController(rootViewController: RecordViewController(viewModel: recordVM))
         
         listVC.title = "News"
         recordVC.title = "Record"

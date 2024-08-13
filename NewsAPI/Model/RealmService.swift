@@ -9,7 +9,13 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-struct RealmService {
+protocol RealmServiceProtocol {
+    func loadReadNews() -> Observable<[News]>
+    func saveReadNews(news: News)
+    func deleteReadNews(news: News)
+}
+
+struct RealmService: RealmServiceProtocol {
     var realm = try? Realm()
     
     func loadReadNews() -> Observable<[News]> {
