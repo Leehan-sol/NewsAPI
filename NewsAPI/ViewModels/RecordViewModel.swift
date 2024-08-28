@@ -78,7 +78,7 @@ class RecordViewModel {
     func deleteNews(index: Int) {
         guard let selectedNews = try? readNews.value()[index] else { return }
         realmService.deleteReadNews(news: selectedNews)
-        deleteNews.onNext(selectedNews.url)
+//        deleteNews.onNext(selectedNews.url)
     }
     
     
